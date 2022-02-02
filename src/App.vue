@@ -1,9 +1,9 @@
 <template>
   <div>
-    <router-link to="/">Products </router-link>
+    <!-- <router-link to="/">Products </router-link>
     <router-link to="/product">Product Details</router-link>
     <router-link to="/create">Add Product</router-link>
-    <router-link to="/update">Update Product</router-link>
+    <router-link to="/update">Update Product</router-link> -->
     <router-view />
   </div>
 </template>

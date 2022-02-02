@@ -1,8 +1,9 @@
 <template>
   <div>
+      <Navbar />
     <h1>Product details</h1>
 
-    <div class="card">
+    <!-- <div class="card">
       <div>{{ singleProduct.title }}</div>
       {{ singleProduct.price }}
       {{ singleProduct.category }}
@@ -12,15 +13,38 @@
         >Update</router-link
       >
       <button v-on:click="deleteProduct" class="btn btn-">delete</button>
-    </div>
+    </div> -->
+    <el-row>
+      <el-col :span="8">
+        <el-card :body-style="{ padding: '10px' }">
+          <div style="padding: 0px">
+            <span>{{ singleProduct.title }}</span>
+            <div class="bottom clearfix">
+              <el-button type="text" class="button"
+                >{{ singleProduct.price }} $</el-button
+              >
+            </div>
+          </div>
+          <router-link
+            :to="{ name: 'UpdateProduct', params: { id: singleProduct.id } }"
+            class=""
+            ><el-button class="button" type="primary">Update</el-button>
+          </router-link>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
 import axios from "axios"
+import Navbar from "./Navbar.vue"
 export default {
   name: "ProductDetails",
   created() {
     this.fetchProducts()
+  },
+   components: {
+    Navbar: Navbar,
   },
   data() {
     return {

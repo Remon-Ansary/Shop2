@@ -1,9 +1,8 @@
 <template>
   <div>
-      <Navbar/>
-    <h1>Fetch products</h1>
-    <el-button type="success" round>Success</el-button>
-    <div v-for="product in products" v-bind:key="product.id">
+    <Navbar />
+    <h1>All products</h1>
+    <!-- <div v-for="product in products" v-bind:key="product.id">
       <div class="">
         <router-link
           :to="{ name: 'ProductDetails', params: { id: product.id } }"
@@ -13,7 +12,27 @@
           <div>Price:{{ product.price }}</div>
         </router-link>
       </div>
-    </div>
+    </div> -->
+    <el-row>
+      <el-col :span="8" v-for="product in products" v-bind:key="product.id">
+        <el-card :body-style="{ padding: '10px' }">
+          <!-- <img v-bind:src="product.image" class="image" /> -->
+          <div style="padding: 0px">
+            <span>{{ product.title }}</span>
+            <div class="bottom clearfix">
+              <el-button type="text" class="button"
+                >{{ product.price }} $</el-button
+              >
+            </div>
+          </div>
+          <router-link
+            :to="{ name: 'ProductDetails', params: { id: product.id } }"
+            class=""
+            ><el-button class="button" type="primary">View Details</el-button>
+          </router-link>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -23,7 +42,7 @@ import Navbar from "./Navbar.vue"
 export default {
   name: "Products",
   components: {
-    "Navbar": Navbar,
+    Navbar: Navbar,
   },
   created() {
     this.fetchProducts()
@@ -51,4 +70,20 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
+
+.button {
+  padding: 10px;
+  float: right;
+}
+
+.image {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+</style>

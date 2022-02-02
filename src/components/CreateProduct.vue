@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar/>
     <div class="container">
       <div class="card">
         <div class="card-header">
@@ -56,10 +56,14 @@
 
 <script>
 import axios from "axios"
+import Navbar from "./Navbar.vue"
 export default {
   name: "CreateProduct",
   created() {
     this.fetchProducts()
+  },
+    components: {
+    Navbar: Navbar,
   },
   data() {
     return {
