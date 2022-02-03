@@ -60,35 +60,34 @@
   </div>
 </template>
 <script>
-import axios from "axios"
+
 import Navbar from "./Navbar.vue"
+import axios from "axios"
 export default {
+  props:["id"],
   name: "ProductDetails",
-  created() {
-    this.fetchProducts()
-  },
+ 
   components: {
+
     Navbar: Navbar,
   },
   data() {
     return {
-      singleProduct: [],
+     
       errorMessage: "",
       show: true,
     }
   },
-  methods: {
-    fetchProducts() {
-      axios
-        .get("https://fakestoreapi.com/products/" + this.$route.params.id)
-        .then((response) => {
-          this.singleProduct = response.data
-          console.log(response.data)
-        })
-        .catch((error) => {
-          this.errorMessage = error.message
-        })
+  computed: {
+    singleProduct() {
+      return this.$store.getters.singleProduct
     },
+  },
+  mounted() {
+    this.$store.dispatch("singleProduct",this.id)
+   
+  },
+   methods: {
     deleteProduct() {
       let uri = "https://fakestoreapi.com/products/" + this.$route.params.id
       axios.delete(uri).then((response) => {
@@ -100,6 +99,7 @@ export default {
     },
   },
 }
+ 
 </script>
 
 <style scoped>
