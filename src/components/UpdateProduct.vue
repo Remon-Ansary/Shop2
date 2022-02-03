@@ -41,28 +41,24 @@ import axios from "axios"
 export default {
   props: ["id"],
   name: "UpdateProduct",
-  created() {
-    this.fetchProducts()
-  },
+ 
   data() {
     return {
-      singleProduct: [],
+   
       updatedProduct: [],
       errorMessage: "",
     }
   },
-  methods: {
-    fetchProducts() {
-      axios
-        .get("https://fakestoreapi.com/products/" + this.id)
-        .then((response) => {
-          this.singleProduct = response.data
-          console.log(response.data)
-        })
-        .catch((error) => {
-          this.errorMessage = error.message
-        })
+  computed: {
+    singleProduct() {
+      return this.$store.getters.singleProduct
     },
+  },
+   mounted() {
+    this.$store.dispatch("singleProduct",this.id)
+   
+  },
+  methods: {
     updateProduct() {
       let uri = "https://fakestoreapi.com/products/" + this.id
       axios.patch(uri, this.singleProduct).then((response) => {
