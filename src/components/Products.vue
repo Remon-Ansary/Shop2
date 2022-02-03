@@ -8,21 +8,21 @@
       <el-row>
         <el-col
           :span="8"
-          v-for="getproduct in getproducts"
-          v-bind:key="getproduct.id"
+          v-for="product in allProducts"
+          v-bind:key="product.id"
         >
           <el-card :body-style="{ padding: '10px' }">
-            <img v-bind:src="getproduct.image" class="image" />
+            <img v-bind:src="product.image" class="image" />
             <div style="padding: 0px">
-              <span>{{ getproduct.title }}</span>
+              <span>{{ product.title }}</span>
               <div class="bottom clearfix">
                 <el-button type="text" class="button"
-                  >{{ getproduct.price }} $</el-button
+                  >{{ product.price }} $</el-button
                 >
               </div>
             </div>
-            <router-link
-              :to="{ name: 'ProductDetails', params: { id: getproduct.id } }"
+             <router-link
+              :to="{ name: 'ProductDetails', params: { id: product.id } }"
               class=""
               ><el-button class="button" type="primary">View Details</el-button>
             </router-link>
@@ -35,6 +35,7 @@
 
 <script>
 import Navbar from "./Navbar.vue"
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "Products",
   components: {
@@ -45,14 +46,14 @@ export default {
       errorMessage: "",
     }
   },
-  computed: {
-    getproducts() {
-      return this.$store.getters.allProducts
-    },
+  methods:{
+      ...mapActions(["getproducts"])
   },
-  mounted() {
-    this.$store.dispatch("getproducts")
+  computed: mapGetters(["allProducts"]),
+  created() {
+    this.getproducts();
   },
+
 }
 </script>
 

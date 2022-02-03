@@ -41,7 +41,6 @@ const actions = {
       console.log(response.data)
     })
   },
-  
 }
 
 //to handle mutations
