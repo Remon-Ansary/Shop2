@@ -41,6 +41,13 @@ const actions = {
       console.log(response.data)
     })
   },
+  deleteProduct({ commit }, id) {
+       let uri = "https://fakestoreapi.com/products/" + id
+    axios.delete(uri).then((response) => {
+            console.log(response.data)
+         commit("DELETE_PRODUCT", id)
+       })
+  }
 }
 
 //to handle mutations
@@ -54,6 +61,9 @@ const mutations = {
   SET_UPDATED_PRODUCTS(state, updateProduct) {
     state.updateProduct = updateProduct
   },
+  DELETE_PRODUCT(state, id) {
+    state.products = state.products.filter((product) => product.id !== id)
+  }
 }
 
 //export store module

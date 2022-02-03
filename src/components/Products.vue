@@ -21,11 +21,12 @@
                 >
               </div>
             </div>
-             <router-link
+            <router-link
               :to="{ name: 'ProductDetails', params: { id: product.id } }"
               class=""
               ><el-button class="button" type="primary">View Details</el-button>
             </router-link>
+            <i class="el-icon-delete" v-on:click="deleteProduct(product.id)"></i>
           </el-card>
         </el-col>
       </el-row>
@@ -35,7 +36,7 @@
 
 <script>
 import Navbar from "./Navbar.vue"
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex"
 export default {
   name: "Products",
   components: {
@@ -46,14 +47,13 @@ export default {
       errorMessage: "",
     }
   },
-  methods:{
-      ...mapActions(["getproducts"])
+  methods: {
+    ...mapActions(["getproducts","deleteProduct"]),
   },
   computed: mapGetters(["allProducts"]),
   created() {
-    this.getproducts();
+    this.getproducts()
   },
-
 }
 </script>
 
