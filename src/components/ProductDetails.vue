@@ -43,14 +43,14 @@
                     >
                   </router-link>
                 </el-col>
-                <el-col :span="5">
+                <!-- <el-col :span="5">
                   <el-button
                     @click="show = !show"
                     v-on:click="deleteProduct(singleProduct.id)"
                     type="danger"
                     >delete</el-button
                   >
-                </el-col>
+                </el-col> -->
               </el-row>
             </el-col>
           </el-row>
@@ -62,7 +62,7 @@
 <script>
 
 import Navbar from "./Navbar.vue"
-import axios from "axios"
+// import axios from "axios"
 export default {
   props:["id"],
   name: "ProductDetails",
@@ -86,17 +86,17 @@ export default {
   mounted() {
     this.$store.dispatch("singleProduct",this.id)
   },
-   methods: {
-    deleteProduct() {
-      let uri = "https://fakestoreapi.com/products/" + this.$route.params.id
-      axios.delete(uri).then((response) => {
-        //  this.$router.push({ name: "ProductDetails" })
-        //  this.singleProduct.splice()
-        alert("Product deleted")
-        console.log(response.data)
-      })
-    },
-  },
+  //  methods: {
+  //   deleteProduct() {
+  //     let uri = "https://fakestoreapi.com/products/" + this.$route.params.id
+  //     axios.delete(uri).then((response) => {
+  //       //  this.$router.push({ name: "ProductDetails" })
+  //       //  this.singleProduct.splice()
+  //       alert("Product deleted")
+  //       console.log(response.data)
+  //     })
+  //   },
+  // },
 }
  
 </script>

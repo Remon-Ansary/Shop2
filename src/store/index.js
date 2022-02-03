@@ -9,6 +9,7 @@ const state = {
   products: [],
   singleProduct: null,
   updateProduct: [],
+ 
 }
 
 //to handle state
@@ -42,12 +43,19 @@ const actions = {
     })
   },
   deleteProduct({ commit }, id) {
-       let uri = "https://fakestoreapi.com/products/" + id
+    let uri = "https://fakestoreapi.com/products/" + id
     axios.delete(uri).then((response) => {
-            console.log(response.data)
-         commit("DELETE_PRODUCT", id)
-       })
-  }
+      console.log(response.data)
+      commit("DELETE_PRODUCT", id)
+    })
+  },
+ async createProduct({ commit }, title,price) {
+     let uri = "https://fakestoreapi.com/products"
+     axios.post(uri, { title, price }).then((response) => {
+       console.log(response.data)
+       commit("createProduct", response.data)
+     })
+  },
 }
 
 //to handle mutations
@@ -63,7 +71,9 @@ const mutations = {
   },
   DELETE_PRODUCT(state, id) {
     state.products = state.products.filter((product) => product.id !== id)
-  }
+  },
+
+  createProduct: (state, newProduct) => state.products.unshift(newProduct),
 }
 
 //export store module

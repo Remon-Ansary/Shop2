@@ -4,7 +4,9 @@
       <el-header> <Navbar /></el-header>
     </el-container>
     <el-main>
+      <CreateProduct />
       <h1>All products</h1>
+
       <el-row>
         <el-col
           :span="8"
@@ -26,7 +28,10 @@
               class=""
               ><el-button class="button" type="primary">View Details</el-button>
             </router-link>
-            <i class="el-icon-delete" v-on:click="deleteProduct(product.id)"></i>
+            <i
+              class="el-icon-delete"
+              v-on:click="deleteProduct(product.id)"
+            ></i>
           </el-card>
         </el-col>
       </el-row>
@@ -36,11 +41,13 @@
 
 <script>
 import Navbar from "./Navbar.vue"
+import CreateProduct from "./CreateProduct.vue"
 import { mapGetters, mapActions } from "vuex"
 export default {
   name: "Products",
   components: {
     Navbar: Navbar,
+    CreateProduct: CreateProduct,
   },
   data() {
     return {
@@ -48,7 +55,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["getproducts","deleteProduct"]),
+    ...mapActions(["getproducts", "deleteProduct"]),
   },
   computed: mapGetters(["allProducts"]),
   created() {
