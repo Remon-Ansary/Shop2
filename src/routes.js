@@ -3,6 +3,7 @@ import CreateProduct from "./components/CreateProduct"
 import ProductDetails from "./components/ProductDetails"
 import Products from "./components/Products"
 import UpdateProduct from "./components/UpdateProduct"
+import Mystore from "./components/Mystore"
 export const routes = [
   {
     path: "/",
@@ -26,5 +27,11 @@ export const routes = [
     name: "UpdateProduct",
     component: UpdateProduct,
     props: true,
+  },
+  {
+    path: "/mystore",
+    name: "Mystore",
+    component: Mystore,
+  
   },
 ]

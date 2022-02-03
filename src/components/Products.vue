@@ -1,71 +1,57 @@
 <template>
   <div>
-    <Navbar />
-    <h1>All products</h1>
-    <!-- <div v-for="product in products" v-bind:key="product.id">
-      <div class="">
-        <router-link
-          :to="{ name: 'ProductDetails', params: { id: product.id } }"
-          class=""
+    <el-container>
+      <el-header> <Navbar /></el-header>
+    </el-container>
+    <el-main>
+      <h1>All products</h1>
+      <el-row>
+        <el-col
+          :span="8"
+          v-for="getproduct in getproducts"
+          v-bind:key="getproduct.id"
         >
-          <div>Name:{{ product.title }}</div>
-          <div>Price:{{ product.price }}</div>
-        </router-link>
-      </div>
-    </div> -->
-    <el-row>
-      <el-col :span="8" v-for="product in products" v-bind:key="product.id">
-        <el-card :body-style="{ padding: '10px' }">
-          <!-- <img v-bind:src="product.image" class="image" /> -->
-          <div style="padding: 0px">
-            <span>{{ product.title }}</span>
-            <div class="bottom clearfix">
-              <el-button type="text" class="button"
-                >{{ product.price }} $</el-button
-              >
+          <el-card :body-style="{ padding: '10px' }">
+            <img v-bind:src="getproduct.image" class="image" />
+            <div style="padding: 0px">
+              <span>{{ getproduct.title }}</span>
+              <div class="bottom clearfix">
+                <el-button type="text" class="button"
+                  >{{ getproduct.price }} $</el-button
+                >
+              </div>
             </div>
-          </div>
-          <router-link
-            :to="{ name: 'ProductDetails', params: { id: product.id } }"
-            class=""
-            ><el-button class="button" type="primary">View Details</el-button>
-          </router-link>
-        </el-card>
-      </el-col>
-    </el-row>
+            <router-link
+              :to="{ name: 'ProductDetails', params: { id: getproduct.id } }"
+              class=""
+              ><el-button class="button" type="primary">View Details</el-button>
+            </router-link>
+          </el-card>
+        </el-col>
+      </el-row>
+    </el-main>
   </div>
 </template>
 
 <script>
-import axios from "axios"
 import Navbar from "./Navbar.vue"
 export default {
   name: "Products",
   components: {
     Navbar: Navbar,
   },
-  created() {
-    this.fetchProducts()
-  },
   data() {
     return {
-      products: [],
       errorMessage: "",
     }
   },
-
-  methods: {
-    fetchProducts() {
-      axios
-        .get("https://fakestoreapi.com/products")
-        .then((response) => {
-          this.products = response.data
-          console.log(response.data)
-        })
-        .catch((error) => {
-          this.errorMessage = error.message
-        })
+  computed: {
+    getproducts() {
+      return this.$store.getters.allProducts
     },
+  },
+  mounted() {
+    this.$store.dispatch("getproducts")
   },
 }
 </script>

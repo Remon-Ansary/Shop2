@@ -1,36 +1,60 @@
 <template>
   <div>
-      <Navbar />
-    <h1>Product details</h1>
-
-    <!-- <div class="card">
-      <div>{{ singleProduct.title }}</div>
-      {{ singleProduct.price }}
-      {{ singleProduct.category }}
-      <router-link
-        :to="{ name: 'UpdateProduct', params: { id: singleProduct.id } }"
-        class="btn btn-primary"
-        >Update</router-link
-      >
-      <button v-on:click="deleteProduct" class="btn btn-">delete</button>
-    </div> -->
-    <el-row>
-      <el-col :span="8">
-        <el-card :body-style="{ padding: '10px' }">
-          <div style="padding: 0px">
-            <span>{{ singleProduct.title }}</span>
-            <div class="bottom clearfix">
-              <el-button type="text" class="button"
-                >{{ singleProduct.price }} $</el-button
-              >
-            </div>
-          </div>
-          <router-link
-            :to="{ name: 'UpdateProduct', params: { id: singleProduct.id } }"
-            class=""
-            ><el-button class="button" type="primary">Update</el-button>
-          </router-link>
-        </el-card>
+    <Navbar />
+    <el-row :gutter="20" v-show="show">
+      <el-col :span="10"
+        ><div class="grid-content bg-purple">
+          <img v-bind:src="singleProduct.image" class="image" /></div
+      ></el-col>
+      <el-col :span="20"
+        ><div class="grid-content bg-purple">
+          <h1>Product details</h1>
+          <el-row :gutter="20">
+            <el-col :span="20">
+              <div>
+                <span>Name: {{ singleProduct.title }}</span>
+                <div class="bottom clearfix">
+                  <el-button type="text" class="button"
+                    >Price: {{ singleProduct.price }} $</el-button
+                  >
+                </div>
+                <div>
+                  <p>Category: {{ singleProduct.category }}</p>
+                </div>
+                <div>
+                  <p>Description: {{ singleProduct.description }}</p>
+                </div>
+              </div>
+              <!-- button -->
+              <el-row :gutter="10">
+                <el-divider></el-divider>
+                <el-col :span="5">
+                  <router-link
+                    :to="{
+                      name: 'UpdateProduct',
+                      params: { id: singleProduct.id },
+                    }"
+                    class=""
+                    ><el-button
+                      class="button"
+                      type="primary"
+                      style="padding-left: "
+                      >Update</el-button
+                    >
+                  </router-link>
+                </el-col>
+                <el-col :span="5">
+                  <el-button
+                    @click="show = !show"
+                    v-on:click="deleteProduct"
+                    type="danger"
+                    >delete</el-button
+                  >
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -43,13 +67,14 @@ export default {
   created() {
     this.fetchProducts()
   },
-   components: {
+  components: {
     Navbar: Navbar,
   },
   data() {
     return {
       singleProduct: [],
       errorMessage: "",
+      show: true,
     }
   },
   methods: {
@@ -77,4 +102,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.image {
+  width: 80%;
+  height: 300px;
+  display: block;
+}
+</style>
