@@ -1,50 +1,44 @@
 <template>
   <div>
-    <Navbar/>
-    
+    <Navbar />
+
     <div class="container">
       <div class="card">
         <div class="card-header">
           <h3>Add Item</h3>
         </div>
         <div class="card-body">
-          <form v-on:submit.prevent="createProduct">
-            <div class="form-group">
-              <label>Item Name:</label>
-              <input
+          <el-form v-on:submit.prevent="createProduct" label-width="100px">
+            <el-form-item label="Product Name">
+              <el-input
                 type="text"
                 class="form-control"
                 v-model="createdProduct.title"
-              />
-            </div>
-            <div class="form-group">
-              <label>Item Price:</label>
-              <input
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="Product Price">
+              <el-input
                 type="text"
                 class="form-control"
                 v-model="createdProduct.price"
-              />
-            </div>
-            <div class="form-group">
-              <label>Description:</label>
-              <input
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="Product Description">
+              <el-input
                 type="text"
                 class="form-control"
                 v-model="createdProduct.description"
-              />
-            </div>
-            <div class="form-group">
-              <label>Image:</label>
-              <input type="text" class="form-control" />
-            </div>
-            <div class="form-group">
-              <label>Category:</label>
-              <input
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="Product Category">
+              <el-input
                 type="text"
                 class="form-control"
                 v-model="createdProduct.category"
-              />
-            </div>
+              ></el-input>
+            </el-form-item>
+          </el-form>
+          <form v-on:submit.prevent="createProduct">
             <div class="form-group">
               <input type="submit" class="btn btn-primary" value="Add Item" />
             </div>
@@ -63,7 +57,7 @@ export default {
   created() {
     this.fetchProducts()
   },
-    components: {
+  components: {
     Navbar: Navbar,
   },
   data() {
@@ -77,7 +71,6 @@ export default {
         .get("https://fakestoreapi.com/products")
         .then((response) => {
           this.products = response.data
-          
         })
         .catch((error) => {
           this.errorMessage = error.message
@@ -90,7 +83,6 @@ export default {
         this.fetchProducts()
       })
     },
-    
   },
 }
 </script>
