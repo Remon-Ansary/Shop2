@@ -46,7 +46,7 @@
                 <el-col :span="5">
                   <el-button
                     @click="show = !show"
-                    v-on:click="deleteProduct"
+                    v-on:click="deleteProduct(singleProduct.id)"
                     type="danger"
                     >delete</el-button
                   >
@@ -85,7 +85,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("singleProduct",this.id)
-   
   },
    methods: {
     deleteProduct() {

@@ -77,7 +77,7 @@ export default {
         .get("https://fakestoreapi.com/products")
         .then((response) => {
           this.products = response.data
-          console.log(response.data)
+          
         })
         .catch((error) => {
           this.errorMessage = error.message
@@ -90,6 +90,7 @@ export default {
         this.fetchProducts()
       })
     },
+    
   },
 }
 </script>
