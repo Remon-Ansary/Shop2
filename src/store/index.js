@@ -47,6 +47,7 @@ const actions = {
     let uri = "https://fakestoreapi.com/products/" + id
     axios.delete(uri).then((response) => {
       console.log(response.data)
+      alert('Deleted'+response.data.title)
       commit("DELETE_PRODUCT", id)
     })
   },
