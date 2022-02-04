@@ -9,7 +9,7 @@ const state = {
   products: [],
   singleProduct: null,
   updateProduct: [],
- 
+  newProduct: [],
 }
 
 //to handle state
@@ -23,7 +23,8 @@ const getters = {
 const actions = {
   getproducts({ commit }) {
     axios.get("https://fakestoreapi.com/products").then((response) => {
-      commit("SET_PRODUCTS", response.data)
+      commit("SET_PRODUCTS", response.data),
+      this.loading = true
     })
   },
   singleProduct({ commit }, productId) {
@@ -49,12 +50,21 @@ const actions = {
       commit("DELETE_PRODUCT", id)
     })
   },
- async createProduct({ commit }, title,price) {
-     let uri = "https://fakestoreapi.com/products"
-     axios.post(uri, { title, price }).then((response) => {
-       console.log(response.data)
-       commit("createProduct", response.data)
-     })
+  // async createProduct({ commit }, title, price, image) {
+  //   let uri = "https://fakestoreapi.com/products"
+  //   axios.post(uri, { title, price, image }).then((response) => {
+  //     console.log(response.data)
+  //     commit("createProduct", response.data)
+  //   })
+  // },
+  async createProduct({ commit }, payload) {
+    console.log(payload)
+    let uri = "https://fakestoreapi.com/products"
+    
+    axios.post(uri, payload).then((response) => {
+      console.log(response.data)
+      commit("createProduct", response.data)
+    })
   },
 }
 
@@ -73,7 +83,7 @@ const mutations = {
     state.products = state.products.filter((product) => product.id !== id)
   },
 
-  createProduct: (state, newProduct) => state.products.unshift(newProduct),
+  createProduct: (state, payload) => state.products.unshift(payload),
 }
 
 //export store module

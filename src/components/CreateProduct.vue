@@ -1,48 +1,50 @@
 <template>
   <div>
-    <Navbar />
-
     <div class="container">
-   
-      
-          <h3>Add Item</h3>
-        </div>
-        <form @submit="onSubmit">       
-             <input type="text" v-model="image" placeholder="Add Todo" />   
-             <input type="text" v-model="title" placeholder="Add Todo" />   
-              <input type="text" v-model="price" placeholder="Add Todo" />    
-          <input type="submit" value="Submit" />
-        </form>
-
+      <h3>Add Item</h3>
+    </div>
+    <el-form @submit="onSubmit" label-width="100px">
+      <el-form-item label="Product Name">
+        <el-input type="text" class="form-control" v-model="title"></el-input>
+      </el-form-item>
+      <el-form-item label="Product Price">
+        <el-input type="text" class="form-control" v-model="price"></el-input>
+      </el-form-item>
+    </el-form>
+    <form @submit="onSubmit">
+      <input type="submit" value="Submit" />
+    </form>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex"
-import Navbar from "./Navbar.vue"
+
 export default {
   name: "CreateProduct",
 
-  components: {
-    Navbar: Navbar,
-  },
   data() {
     return {
-      image: '',
-      title: '',
-      price: '',
-    
-    
+      title: "",
+      price: "",
+      category: "",
+      image: "",
+      
     }
   },
   methods: {
     ...mapActions(["createProduct"]),
     onSubmit(event) {
       event.preventDefault()
-      this.createProduct(this.image, this.title, this.price)
-     
-     
-    
+      this.createProduct(
+        this.payload ={
+          title: this.title,
+          price: this.price,
+          category: this.category,
+          image: this.image,
+        }
+      )
+      console.log("createProduct")
     },
   },
 }

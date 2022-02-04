@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <el-row :gutter="20" v-show="show">
+    <el-row :gutter="20"   v-show="show">
       <el-col :span="10"
         ><div class="grid-content bg-purple">
           <img v-bind:src="singleProduct.image" class="image" /></div
@@ -60,20 +60,17 @@
   </div>
 </template>
 <script>
-
 import Navbar from "./Navbar.vue"
 // import axios from "axios"
 export default {
-  props:["id"],
+  props: ["id"],
   name: "ProductDetails",
- 
-  components: {
 
+  components: {
     Navbar: Navbar,
   },
   data() {
     return {
-     
       errorMessage: "",
       show: true,
     }
@@ -84,7 +81,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("singleProduct",this.id)
+    this.$store.dispatch("singleProduct", this.id)
   },
   //  methods: {
   //   deleteProduct() {
@@ -98,7 +95,6 @@ export default {
   //   },
   // },
 }
- 
 </script>
 
 <style scoped>

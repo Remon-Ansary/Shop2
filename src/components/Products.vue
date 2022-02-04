@@ -3,17 +3,17 @@
     <el-container>
       <el-header> <Navbar /></el-header>
     </el-container>
-    <el-main>
+    <el-main >
       <CreateProduct />
       <h1>All products</h1>
 
-      <el-row>
-        <el-col
+      <el-row v-loading="loading" >
+        <el-col 
           :span="8"
           v-for="product in allProducts"
           v-bind:key="product.id"
         >
-          <el-card :body-style="{ padding: '10px' }">
+          <el-card :body-style="{ padding: '10px' }" >
             <img v-bind:src="product.image" class="image" />
             <div style="padding: 0px">
               <span>{{ product.title }}</span>
@@ -49,17 +49,24 @@ export default {
     Navbar: Navbar,
     CreateProduct: CreateProduct,
   },
+  
   data() {
     return {
+     
       errorMessage: "",
     }
   },
   methods: {
     ...mapActions(["getproducts", "deleteProduct"]),
+    
   },
-  computed: mapGetters(["allProducts"]),
+  computed: mapGetters(["allProducts"]), 
+  mounted: function() {
+    this.loading= false;
+  },
   created() {
-    this.getproducts()
+    this.getproducts();
+    this.loading= true;
   },
 }
 </script>
