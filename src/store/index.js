@@ -34,9 +34,9 @@ const actions = {
       })
   },
  async updateProduct({ commit }, payload) {
-     console.log(payload)
-     let uri = "https://fakestoreapi.com/products"
-     axios.post(uri, payload).then((response) => {
+     console.log(payload.id)
+     let uri = `https://fakestoreapi.com/products//${payload.id}`
+     axios.put(uri, payload).then((response) => {
        console.log(response.data)
        commit("updateProduct", response.data)
      })
@@ -74,7 +74,15 @@ const mutations = {
   SET_SINGLE_PRODUCTS(state, singleProduct) {
     state.singleProduct = singleProduct
   },
-  updateProduct: (state, payload) => state.products.unshift(payload),
+  updateProduct: (state, payload) =>{
+     const index = state.products.findIndex(
+      (product) => product.id === payload.id
+    )
+
+    if (index !== -1) {
+      state.products.splice(index, 1, payload)
+    }
+  },
   DELETE_PRODUCT(state, id) {
     state.products = state.products.filter((product) => product.id !== id)
   },

@@ -5,6 +5,11 @@
       <h3>Edit Item</h3>
       <el-form @submit="onSubmit" label-width="100px">
         <el-form-item label="Product Name">
+             <el-input
+            type="text"
+            class="form-control"
+            v-model="singleProduct.id"
+          ></el-input>
           <el-input
             type="text"
             class="form-control"
@@ -21,18 +26,18 @@
       </el-form>
       <div class="card-header"></div>
       <div class="card-body">
-        <form @submit="onSubmit" >
-      <input type="submit" value="Submit" />
-    </form>
+        <form @submit="onSubmit">
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     </div>
     <div style="margin: 20px"></div>
-<!-- 
+    
     <div>
       <h2>Updated Product</h2>
-      {{ updatedProduct.title }} {{ updatedProduct.price
-      }}{{ updatedProduct.category }}
-    </div> -->
+      {{ singleProduct.title }} {{ singleProduct.price
+      }}{{ singleProduct.category }}
+    </div>
   </div>
 </template>
 
@@ -50,7 +55,7 @@ export default {
     return {
       title: this.singleProduct.title,
       price: this.singleProduct.price,
- 
+
       errorMessage: "",
     }
   },
@@ -68,7 +73,8 @@ export default {
       event.preventDefault()
       this.updateProduct(
         (this.payload = {
-          title:  this.singleProduct.title,
+            id: this.singleProduct.id,
+          title: this.singleProduct.title,
           price: this.singleProduct.price,
           category: this.category,
           image: this.image,
