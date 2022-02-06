@@ -3,12 +3,7 @@
     <Navbar />
     <div class="card">
       <h3>Edit Item</h3>
-      <el-form
-        v-on:submit.prevent="updateProduct"
-       
-        label-width="100px"
-       
-      >
+      <el-form @submit="onSubmit" label-width="100px">
         <el-form-item label="Product Name">
           <el-input
             type="text"
@@ -23,30 +18,27 @@
             v-model="singleProduct.price"
           ></el-input>
         </el-form-item>
-       
       </el-form>
       <div class="card-header"></div>
       <div class="card-body">
-        <form v-on:submit.prevent="updateProduct">
-         
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Update Item" />
-          </div>
-        </form>
+        <form @submit="onSubmit" >
+      <input type="submit" value="Submit" />
+    </form>
       </div>
     </div>
     <div style="margin: 20px"></div>
-
+<!-- 
     <div>
       <h2>Updated Product</h2>
       {{ updatedProduct.title }} {{ updatedProduct.price
       }}{{ updatedProduct.category }}
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import axios from "axios"
+import { mapActions } from "vuex"
+
 import Navbar from "./Navbar.vue"
 export default {
   props: ["id"],
@@ -56,7 +48,9 @@ export default {
   },
   data() {
     return {
-        updatedProduct: [],
+      title: this.singleProduct.title,
+      price: this.singleProduct.price,
+ 
       errorMessage: "",
     }
   },
@@ -68,14 +62,19 @@ export default {
   mounted() {
     this.$store.dispatch("singleProduct", this.id)
   },
-    methods: {
-    updateProduct() {
-      let uri = "https://fakestoreapi.com/products/" + this.id
-      axios.patch(uri, this.singleProduct).then((response) => {
-        // this.$router.push({ name: "ProductDetails" })
-        this.updatedProduct = response.data
-        console.log(response.data)
-      })
+  methods: {
+    ...mapActions(["updateProduct"]),
+    onSubmit(event) {
+      event.preventDefault()
+      this.updateProduct(
+        (this.payload = {
+          title:  this.singleProduct.title,
+          price: this.singleProduct.price,
+          category: this.category,
+          image: this.image,
+        })
+      )
+      console.log("updateProduct")
     },
   },
 }
