@@ -5,7 +5,7 @@
     </el-container>
     <el-main>
       <h1>All products</h1>
-      <el-row :gutter="10" v-loading="loading">
+      <el-row :gutter="10">
         <el-col
           :xs="11"
           :sm="8"
@@ -62,10 +62,6 @@ export default {
 
   mounted() {
     this.$store.dispatch("allProducts")
-    this.loading = false
-  },
-  created() {
-    this.loading = true
   },
 }
 </script>

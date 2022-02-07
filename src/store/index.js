@@ -74,7 +74,6 @@ const actions = {
 const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products
-    console.log("products" + state.products)
   },
   SET_SINGLE_PRODUCTS(state, singleProduct) {
     state.singleProduct = singleProduct
@@ -84,9 +83,7 @@ const mutations = {
       (product) => product.id === payload.id
     )
 
-    if (index !== -1) {
-      state.products.splice(index, 1, payload)
-    }
+    state.products.splice(index, 1, payload)
   },
   DELETE_PRODUCT(state, id) {
     state.products = state.products.filter((product) => product.id !== id)
