@@ -1,7 +1,6 @@
 import axios from "axios"
 import Vuex from "vuex"
 import Vue from "vue"
-
 Vue.use(Vuex)
 
 //to handle state
@@ -28,33 +27,30 @@ const actions = {
     }
   },
   singleProduct({ commit }, productId) {
-
-      axios
-        .get(`https://fakestoreapi.com/products/${productId}`)
-        .then((response) => {
-          commit("SET_SINGLE_PRODUCTS", response.data)
-        })
-   
+    axios
+      .get(`https://fakestoreapi.com/products/${productId}`)
+      .then((response) => {
+        commit("SET_SINGLE_PRODUCTS", response.data)
+      })
   },
 
   async updateProduct({ commit }, payload) {
-      console.log(payload.id)
-      // let uri = `https://fakestoreapi.com/products//${payload.id}`
-      // axios.put(uri, payload).then((response) => {
-        // console.log(response.data)
-        commit("updateProduct", payload)
-      // })
-   
+    console.log(payload.id)
+    // let uri = `https://fakestoreapi.com/products//${payload.id}`
+    // axios.put(uri, payload).then((response) => {
+    // console.log(response.data)
+    commit("updateProduct", payload)
+    // })
   },
 
   deleteProduct({ commit }, id) {
-    let uri = "https://fakestoreapi.com/products/" + id
-    axios.delete(uri).then((response) => {
-      console.log(response.data)
-      alert("Deleted  " + response.data.title)
-      commit("DELETE_PRODUCT", id)
-      
-    })
+    // let uri = "https://fakestoreapi.com/products/" + id
+    // axios.delete(uri).then((response) => {
+    //   console.log(response.data)
+    // alert("Deleted  " + response.data.title)
+    commit("DELETE_PRODUCT", id)
+
+    // })
   },
 
   // async createProduct({ commit }, title, price, image) {

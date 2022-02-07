@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <el-row :gutter="20" v-show="show">
+    <el-row :gutter="20">
       <el-col :span="10"
         ><div class="grid-content bg-purple">
           <img v-bind:src="singleProduct.image" class="image" /></div
@@ -43,14 +43,19 @@
                     >
                   </router-link>
                 </el-col>
-                <el-col :span="5">
+                <router-link
+                  :to="{
+                    name: 'Products',
+                  }"
+                  class=""
+                >
                   <el-button
-                    @click="show = !show"
                     v-on:click="deleteProduct(singleProduct.id)"
                     type="danger"
                     >delete</el-button
                   >
-                </el-col>
+                </router-link>
+                <el-col :span="5"> </el-col>
               </el-row>
             </el-col>
           </el-row>
@@ -88,7 +93,7 @@ export default {
     this.$store.dispatch("singleProduct", this.id)
   },
 
-  deleteProduct() {
+  newroute() {
     this.$router.push({ name: "Products" })
   },
 }

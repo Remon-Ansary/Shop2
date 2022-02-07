@@ -14,6 +14,7 @@
       <el-form-item label=" Image">
         <el-input type="text" class="form-control" v-model="image"></el-input>
       </el-form-item>
+
       <el-form-item label=" Category">
         <el-input
           type="text"
@@ -29,7 +30,6 @@
     </form>
   </div>
 </template>
-
 <script>
 import { mapActions } from "vuex"
 import Navbar from "./Navbar.vue"

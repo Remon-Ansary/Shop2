@@ -4,12 +4,15 @@
     <div class="card">
       <h3>Edit Item</h3>
       <el-form @submit="onSubmit" label-width="100px">
-        <el-form-item label="Product Name">
+        <el-form-item label="Product ID">
           <el-input
             type="text"
             class="form-control"
             v-model="singleProduct.id"
           ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Product Name">
           <el-input
             type="text"
             class="form-control"
@@ -21,6 +24,20 @@
             type="text"
             class="form-control"
             v-model="singleProduct.price"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label=" Category">
+          <el-input
+            type="text"
+            class="form-control"
+            v-model="singleProduct.category"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label=" Category">
+          <el-input
+            type="text"
+            class="form-control"
+            v-model="singleProduct.image"
           ></el-input>
         </el-form-item>
       </el-form>
@@ -67,7 +84,7 @@ export default {
     this.$store.dispatch("singleProduct", this.id)
   },
   methods: {
-    ...mapActions(["updateProduct","singleProduct"]),
+    ...mapActions(["updateProduct", "singleProduct"]),
     onSubmit(event) {
       event.preventDefault()
       this.updateProduct(
@@ -79,7 +96,7 @@ export default {
           image: this.image,
         })
       )
-      
+
       console.log("updateProduct")
     },
   },
