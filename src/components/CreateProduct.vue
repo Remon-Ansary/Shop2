@@ -59,8 +59,10 @@ export default {
           category: this.category,
           image: this.image,
         })
+        
       )
       console.log("createProduct")
+      this.$router.push("/")
     },
   },
 }
