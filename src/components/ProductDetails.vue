@@ -55,7 +55,6 @@
                     >delete</el-button
                   >
                 </router-link>
-                <el-col :span="5"> </el-col>
               </el-row>
             </el-col>
           </el-row>

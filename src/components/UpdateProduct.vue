@@ -43,10 +43,14 @@
       </el-form>
       <div class="card-header"></div>
       <div class="card-body">
-        <form @submit="onSubmit">
+        <!-- <form @submit="onSubmit">
           <input type="submit" value="Submit" />
-        </form>
+        </form> -->
       </div>
+
+      <form @submit="onSubmit">
+        <input type="submit" value="Submit" />
+      </form>
     </div>
     <div style="margin: 20px"></div>
 
@@ -85,6 +89,7 @@ export default {
   },
   methods: {
     ...mapActions(["updateProduct", "singleProduct"]),
+
     onSubmit(event) {
       event.preventDefault()
       this.updateProduct(
@@ -94,7 +99,8 @@ export default {
           price: this.singleProduct.price,
           category: this.category,
           image: this.image,
-        })
+        }),
+        this.$router.push("/")
       )
 
       console.log("updateProduct")
