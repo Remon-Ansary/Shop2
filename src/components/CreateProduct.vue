@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container">
+           <el-header> <Navbar /></el-header>
       <h3>Add Item</h3>
     </div>
     <el-form @submit="onSubmit" label-width="100px">
@@ -31,9 +32,14 @@
 
 <script>
 import { mapActions } from "vuex"
-
+import Navbar from "./Navbar.vue"
 export default {
   name: "CreateProduct",
+  components: {
+    
+    Navbar: Navbar,
+  },
+  
   data() {
     return {
       title: "",

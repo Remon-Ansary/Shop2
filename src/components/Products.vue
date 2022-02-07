@@ -3,17 +3,19 @@
     <el-container>
       <el-header> <Navbar /></el-header>
     </el-container>
-    <el-main >
-      <CreateProduct />
+    <el-main>
       <h1>All products</h1>
-
-      <el-row v-loading="loading" :gutter="10">
-        <el-col 
-         :xs="11" :sm="8" :md="6" :lg="6" :xl="6"
+      <el-row :gutter="10">
+        <el-col
+          :xs="11"
+          :sm="8"
+          :md="6"
+          :lg="6"
+          :xl="6"
           v-for="product in allProducts"
           v-bind:key="product.id"
         >
-          <el-card  class="card">
+          <el-card class="card">
             <img v-bind:src="product.image" class="image" />
             <div style="padding: 0px">
               <span>{{ product.title }}</span>
@@ -41,32 +43,26 @@
 
 <script>
 import Navbar from "./Navbar.vue"
-import CreateProduct from "./CreateProduct.vue"
 import { mapGetters, mapActions } from "vuex"
 export default {
   name: "Products",
   components: {
     Navbar: Navbar,
-    CreateProduct: CreateProduct,
   },
-  
+
   data() {
     return {
-     
+      value: 1,
       errorMessage: "",
     }
   },
   methods: {
-    ...mapActions(["getproducts", "deleteProduct"]),
-    
+    ...mapActions(["allProducts", "deleteProduct"]),
   },
-  computed: mapGetters(["allProducts"]), 
-  mounted: function() {
-    this.loading= false;
-  },
-  created() {
-    this.getproducts();
-    this.loading= true;
+  computed: mapGetters(["allProducts"]),
+
+  mounted() {
+    this.$store.dispatch("allProducts")
   },
 }
 </script>
@@ -81,7 +77,7 @@ export default {
   padding: 10px;
   float: right;
 }
-.card{
+.card {
   margin-bottom: 10px;
   height: 350px;
 }
