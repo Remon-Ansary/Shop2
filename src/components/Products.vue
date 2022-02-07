@@ -7,13 +7,13 @@
       <CreateProduct />
       <h1>All products</h1>
 
-      <el-row v-loading="loading" >
+      <el-row v-loading="loading" :gutter="10">
         <el-col 
-          :span="8"
+         :xs="11" :sm="8" :md="6" :lg="6" :xl="6"
           v-for="product in allProducts"
           v-bind:key="product.id"
         >
-          <el-card :body-style="{ padding: '10px' }" >
+          <el-card  class="card">
             <img v-bind:src="product.image" class="image" />
             <div style="padding: 0px">
               <span>{{ product.title }}</span>
@@ -81,10 +81,13 @@ export default {
   padding: 10px;
   float: right;
 }
-
+.card{
+  margin-bottom: 10px;
+  height: 350px;
+}
 .image {
   width: 100%;
-  height: 300px;
+  height: 200px;
   display: block;
 }
 </style>

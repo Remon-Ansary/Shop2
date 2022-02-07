@@ -32,12 +32,12 @@
       </div>
     </div>
     <div style="margin: 20px"></div>
-    
+<!--     
     <div>
       <h2>Updated Product</h2>
       {{ singleProduct.title }} {{ singleProduct.price
       }}{{ singleProduct.category }}
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -80,7 +80,8 @@ export default {
           image: this.image,
         })
       )
-      console.log("updateProduct")
+      console.log("updateProduct");
+      alert("Product updated")
     },
   },
 }
