@@ -6,8 +6,8 @@ Vue.use(Vuex)
 //to handle state
 const state = {
   products: null,
-  singleProduct: null,
-  updateProduct: null,
+  singleProduct: [],
+  updateProduct: [],
   newProduct: [],
 }
 
@@ -63,7 +63,6 @@ const actions = {
   async createProduct({ commit }, payload) {
     console.log(payload)
     let uri = "https://fakestoreapi.com/products"
-
     axios.post(uri, payload).then((response) => {
       console.log(response.data)
       commit("createProduct", response.data)

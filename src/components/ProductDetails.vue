@@ -100,7 +100,7 @@ export default {
 
 <style scoped>
 .image {
-  width: 80%;
+  width: 300px;
   height: 300px;
   display: block;
 }

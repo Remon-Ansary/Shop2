@@ -5,7 +5,7 @@
     </el-container>
     <el-main>
       <h1>All products</h1>
-      <el-row :gutter="10">
+      <el-row :gutter="10" v-loading="loading">
         <el-col
           :xs="11"
           :sm="8"
@@ -52,17 +52,20 @@ export default {
 
   data() {
     return {
-     
       errorMessage: "",
     }
   },
   methods: {
-    ...mapActions([ "deleteProduct"]),
+    ...mapActions(["deleteProduct"]),
   },
   computed: mapGetters(["allProducts"]),
 
   mounted() {
     this.$store.dispatch("allProducts")
+    this.loading = false
+  },
+  created() {
+    this.loading = true
   },
 }
 </script>

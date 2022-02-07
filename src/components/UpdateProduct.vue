@@ -42,23 +42,13 @@
         </el-form-item>
       </el-form>
       <div class="card-header"></div>
-      <div class="card-body">
-        <!-- <form @submit="onSubmit">
-          <input type="submit" value="Submit" />
-        </form> -->
-      </div>
+      <div class="card-body"></div>
 
       <form @submit="onSubmit">
         <input type="submit" value="Submit" />
       </form>
     </div>
     <div style="margin: 20px"></div>
-
-    <div>
-      <h2>Updated Product</h2>
-      {{ updateProduct.title }} {{ updateProduct.price
-      }}{{ updateProduct.category }}
-    </div>
   </div>
 </template>
 
@@ -74,8 +64,6 @@ export default {
   },
   data() {
     return {
-      title: this.singleProduct.title,
-      price: this.singleProduct.price,
       errorMessage: "",
     }
   },
@@ -89,7 +77,6 @@ export default {
   },
   methods: {
     ...mapActions(["updateProduct", "singleProduct"]),
-
     onSubmit(event) {
       event.preventDefault()
       this.updateProduct(
@@ -97,8 +84,8 @@ export default {
           id: this.singleProduct.id,
           title: this.singleProduct.title,
           price: this.singleProduct.price,
-          category: this.category,
-          image: this.image,
+          category: this.singleProduct.category,
+          image: this.singleProduct.image,
         }),
         this.$router.push("/")
       )

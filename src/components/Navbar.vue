@@ -16,12 +16,6 @@
       <el-menu-item index="2">
         <router-link to="/create">Add Product</router-link></el-menu-item
       >
-      <el-menu-item index="3">
-        <router-link to="/product">Product Details</router-link></el-menu-item
-      >
-      <el-menu-item index="4">
-        <router-link to="/update">Update Product</router-link></el-menu-item
-      >
     </el-menu>
 
     <router-view />
