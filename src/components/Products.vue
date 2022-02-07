@@ -57,7 +57,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["allProducts", "deleteProduct"]),
+    ...mapActions([ "deleteProduct"]),
   },
   computed: mapGetters(["allProducts"]),
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <el-row :gutter="20"   v-show="show">
+    <el-row :gutter="20" v-show="show">
       <el-col :span="10"
         ><div class="grid-content bg-purple">
           <img v-bind:src="singleProduct.image" class="image" /></div
@@ -43,14 +43,14 @@
                     >
                   </router-link>
                 </el-col>
-                <!-- <el-col :span="5">
+                <el-col :span="5">
                   <el-button
                     @click="show = !show"
                     v-on:click="deleteProduct(singleProduct.id)"
                     type="danger"
                     >delete</el-button
                   >
-                </el-col> -->
+                </el-col>
               </el-row>
             </el-col>
           </el-row>
@@ -62,6 +62,7 @@
 <script>
 import Navbar from "./Navbar.vue"
 // import axios from "axios"
+import { mapActions } from "vuex"
 export default {
   props: ["id"],
   name: "ProductDetails",
@@ -75,6 +76,9 @@ export default {
       show: true,
     }
   },
+  methods: {
+    ...mapActions(["deleteProduct"]),
+  },
   computed: {
     singleProduct() {
       return this.$store.getters.singleProduct
@@ -83,17 +87,10 @@ export default {
   mounted() {
     this.$store.dispatch("singleProduct", this.id)
   },
-  //  methods: {
-  //   deleteProduct() {
-  //     let uri = "https://fakestoreapi.com/products/" + this.$route.params.id
-  //     axios.delete(uri).then((response) => {
-  //       //  this.$router.push({ name: "ProductDetails" })
-  //       //  this.singleProduct.splice()
-  //       alert("Product deleted")
-  //       console.log(response.data)
-  //     })
-  //   },
-  // },
+
+  deleteProduct() {
+    this.$router.push({ name: "Products" })
+  },
 }
 </script>
 

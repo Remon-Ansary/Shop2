@@ -8,16 +8,14 @@ Vue.use(Vuex)
 const state = {
   products: null,
   singleProduct: null,
-  updateProduct: [],
+  updateProduct: null,
   newProduct: [],
 }
-
 
 //to handle state
 const getters = {
   allProducts: (state) => state.products,
   singleProduct: (state) => state.singleProduct,
-  updateProduct: (state) => state.updateProduct,
 }
 
 //to handle actions
@@ -30,21 +28,23 @@ const actions = {
     }
   },
   singleProduct({ commit }, productId) {
-    axios
-      .get(`https://fakestoreapi.com/products/${productId}`)
-      .then((response) => {
-        commit("SET_SINGLE_PRODUCTS", response.data)
-      })
+
+      axios
+        .get(`https://fakestoreapi.com/products/${productId}`)
+        .then((response) => {
+          commit("SET_SINGLE_PRODUCTS", response.data)
+        })
+   
   },
 
-  updateProduct({ commit }, productId) {
-    let uri = "https://fakestoreapi.com/products/" + this.id
-    axios.patch(uri, this.singleProduct).then((response) => {
-      // this.$router.push({ name: "ProductDetails" })
-      this.updateProduct = response.data
-      commit("SET_UPDATED_PRODUCTS", productId)
-      console.log(response.data)
-    })
+  async updateProduct({ commit }, payload) {
+      console.log(payload.id)
+      // let uri = `https://fakestoreapi.com/products//${payload.id}`
+      // axios.put(uri, payload).then((response) => {
+        // console.log(response.data)
+        commit("updateProduct", payload)
+      // })
+   
   },
 
   deleteProduct({ commit }, id) {
@@ -53,6 +53,7 @@ const actions = {
       console.log(response.data)
       alert("Deleted  " + response.data.title)
       commit("DELETE_PRODUCT", id)
+      
     })
   },
 
@@ -83,8 +84,14 @@ const mutations = {
   SET_SINGLE_PRODUCTS(state, singleProduct) {
     state.singleProduct = singleProduct
   },
-  SET_UPDATED_PRODUCTS(state, updateProduct) {
-    state.updateProduct = updateProduct
+  updateProduct: (state, payload) => {
+    const index = state.products.findIndex(
+      (product) => product.id === payload.id
+    )
+
+    if (index !== -1) {
+      state.products.splice(index, 1, payload)
+    }
   },
   DELETE_PRODUCT(state, id) {
     state.products = state.products.filter((product) => product.id !== id)

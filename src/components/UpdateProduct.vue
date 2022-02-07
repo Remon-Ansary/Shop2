@@ -5,7 +5,7 @@
       <h3>Edit Item</h3>
       <el-form @submit="onSubmit" label-width="100px">
         <el-form-item label="Product Name">
-             <el-input
+          <el-input
             type="text"
             class="form-control"
             v-model="singleProduct.id"
@@ -32,12 +32,12 @@
       </div>
     </div>
     <div style="margin: 20px"></div>
-<!--     
+
     <div>
       <h2>Updated Product</h2>
-      {{ singleProduct.title }} {{ singleProduct.price
-      }}{{ singleProduct.category }}
-    </div> -->
+      {{ updateProduct.title }} {{ updateProduct.price
+      }}{{ updateProduct.category }}
+    </div>
   </div>
 </template>
 
@@ -55,7 +55,6 @@ export default {
     return {
       title: this.singleProduct.title,
       price: this.singleProduct.price,
-
       errorMessage: "",
     }
   },
@@ -68,20 +67,20 @@ export default {
     this.$store.dispatch("singleProduct", this.id)
   },
   methods: {
-    ...mapActions(["updateProduct"]),
+    ...mapActions(["updateProduct","singleProduct"]),
     onSubmit(event) {
       event.preventDefault()
       this.updateProduct(
         (this.payload = {
-            id: this.singleProduct.id,
+          id: this.singleProduct.id,
           title: this.singleProduct.title,
           price: this.singleProduct.price,
           category: this.category,
           image: this.image,
         })
       )
-      console.log("updateProduct");
-      alert("Product updated")
+      
+      console.log("updateProduct")
     },
   },
 }
