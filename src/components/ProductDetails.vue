@@ -1,6 +1,5 @@
 <template>
   <div>
-   
     <el-row :gutter="20">
       <el-col :span="10"
         ><div class="grid-content bg-purple">
@@ -68,7 +67,7 @@
 import { mapGetters, mapActions } from "vuex"
 export default {
   name: "ProductDetails",
-  props: ["id"],
+
   data() {
     return {
       errorMessage: "",
@@ -85,11 +84,7 @@ export default {
     mapGetters(["singleProduct"]),
 
   mounted() {
-    this.$store.dispatch("singleProduct", this.id)
-  },
-
-  newroute() {
-    this.$router.push({ name: "Products" })
+    this.$store.dispatch("singleProduct", this.$route.params.id)
   },
 }
 </script>

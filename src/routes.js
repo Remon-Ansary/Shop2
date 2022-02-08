@@ -9,10 +9,10 @@ export const routes = [
     component: Products,
   },
   {
-    path: "/product/:id",
+    path: "/product",
     name: "ProductDetails",
     component: ProductDetails,
-    props: true,
+  
   },
   {
     path: "/create/",
@@ -24,6 +24,6 @@ export const routes = [
     path: "/update/:id",
     name: "UpdateProduct",
     component: UpdateProduct,
-    props: true,
+    
   },
 ]

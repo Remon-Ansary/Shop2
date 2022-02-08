@@ -50,7 +50,6 @@
 <script>
 import { mapActions, mapGetters } from "vuex"
 export default {
-  props: ["id"],
   name: "UpdateProduct",
   data() {
     return {
@@ -60,7 +59,7 @@ export default {
   computed: mapGetters(["singleProduct"]),
 
   mounted() {
-    this.$store.dispatch("singleProduct", this.id)
+    this.$store.dispatch("singleProduct", this.$route.params.id)
   },
   methods: {
     ...mapActions(["updateProduct", "singleProduct"]),
