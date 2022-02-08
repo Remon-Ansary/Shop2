@@ -1,8 +1,6 @@
 <template>
   <div>
-    <el-container>
-      <el-header> <Navbar /></el-header>
-    </el-container>
+    <el-container> </el-container>
     <el-main>
       <h1>All products</h1>
       <el-row :gutter="10">
@@ -42,13 +40,9 @@
 </template>
 
 <script>
-import Navbar from "./Navbar.vue"
 import { mapGetters, mapActions } from "vuex"
 export default {
   name: "Products",
-  components: {
-    Navbar: Navbar,
-  },
 
   data() {
     return {

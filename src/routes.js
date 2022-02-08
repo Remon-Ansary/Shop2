@@ -18,7 +18,7 @@ export const routes = [
     path: "/create/",
     name: "CreateProduct",
     component: CreateProduct,
-    props: true,
+    
   },
   {
     path: "/update/:id",

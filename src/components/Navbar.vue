@@ -17,8 +17,6 @@
         <router-link to="/create">Add Product</router-link></el-menu-item
       >
     </el-menu>
-
-    <router-view />
   </div>
 </template>
 

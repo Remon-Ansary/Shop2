@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="container">
-      <el-header> <Navbar /></el-header>
       <h3>Add Item</h3>
     </div>
     <el-form @submit="onSubmit" label-width="100px">
@@ -23,7 +22,11 @@
         ></el-input>
       </el-form-item>
 
-      <el-alert title="success alert" type="success" v-show="!notification"></el-alert>
+      <el-alert
+        title="success alert"
+        type="success"
+        v-show="!notification"
+      ></el-alert>
     </el-form>
     <form @submit="onSubmit" v-on:click="notification = !notification">
       <input type="submit" value="Submit" />
@@ -32,12 +35,9 @@
 </template>
 <script>
 import { mapActions } from "vuex"
-import Navbar from "./Navbar.vue"
+
 export default {
   name: "CreateProduct",
-  components: {
-    Navbar: Navbar,
-  },
 
   data() {
     return {

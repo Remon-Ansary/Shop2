@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+   
     <el-row :gutter="20">
       <el-col :span="10"
         ><div class="grid-content bg-purple">
@@ -64,16 +64,11 @@
   </div>
 </template>
 <script>
-import Navbar from "./Navbar.vue"
 // import axios from "axios"
 import { mapGetters, mapActions } from "vuex"
 export default {
   name: "ProductDetails",
   props: ["id"],
-  components: {
-    Navbar: Navbar,
-  },
-
   data() {
     return {
       errorMessage: "",

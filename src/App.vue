@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar/>
     <!-- <router-link to="/">Products </router-link>
     <router-link to="/product">Product Details</router-link>
     <router-link to="/create">Add Product</router-link>
@@ -9,9 +10,13 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar.vue"
 export default {
   name: "App",
-}
+  components: {
+    Navbar,
+  }
+  }
 </script>
 
 <style>

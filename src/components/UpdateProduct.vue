@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <Navbar />
     <div class="card">
       <h3>Edit Item</h3>
       <el-form @submit="onSubmit" label-width="100px">
@@ -43,10 +42,6 @@
       </el-form>
       <div class="card-header"></div>
       <div class="card-body"></div>
-
-      <form @submit="onSubmit">
-        <input type="submit" value="Submit" />
-      </form>
     </div>
     <div style="margin: 20px"></div>
   </div>
@@ -54,14 +49,9 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex"
-
-import Navbar from "./Navbar.vue"
 export default {
   props: ["id"],
   name: "UpdateProduct",
-  components: {
-    Navbar: Navbar,
-  },
   data() {
     return {
       errorMessage: "",
