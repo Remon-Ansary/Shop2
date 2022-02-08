@@ -66,7 +66,6 @@ const mutations = {
     const index = state.products.findIndex(
       (product) => product.id === payload.id
     )
-
     state.products.splice(index, 1, payload)
   },
 
