@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 
 import Navbar from "./Navbar.vue"
 export default {
@@ -67,11 +67,8 @@ export default {
       errorMessage: "",
     }
   },
-  computed: {
-    singleProduct() {
-      return this.$store.getters.singleProduct
-    },
-  },
+  computed: mapGetters(["singleProduct"]),
+
   mounted() {
     this.$store.dispatch("singleProduct", this.id)
   },

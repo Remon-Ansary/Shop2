@@ -66,14 +66,14 @@
 <script>
 import Navbar from "./Navbar.vue"
 // import axios from "axios"
-import { mapActions } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 export default {
   name: "ProductDetails",
-  props:["id"],
+  props: ["id"],
   components: {
     Navbar: Navbar,
   },
-  
+
   data() {
     return {
       errorMessage: "",
@@ -83,11 +83,12 @@ export default {
   methods: {
     ...mapActions(["deleteProduct"]),
   },
-  computed: {
-    singleProduct() {
-      return this.$store.getters.singleProduct
-    },
-  },
+  computed:
+    // singleProduct() {
+    //   return this.$store.getters.singleProduct
+    // },
+    mapGetters(["singleProduct"]),
+
   mounted() {
     this.$store.dispatch("singleProduct", this.id)
   },
