@@ -68,12 +68,12 @@ import Navbar from "./Navbar.vue"
 // import axios from "axios"
 import { mapActions } from "vuex"
 export default {
-  props: ["id"],
   name: "ProductDetails",
-
+  props:["id"],
   components: {
     Navbar: Navbar,
   },
+  
   data() {
     return {
       errorMessage: "",

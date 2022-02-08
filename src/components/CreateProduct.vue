@@ -23,9 +23,9 @@
         ></el-input>
       </el-form-item>
 
-      <el-alert title="success alert" type="success" v-show="!hello"></el-alert>
+      <el-alert title="success alert" type="success" v-show="!notification"></el-alert>
     </el-form>
-    <form @submit="onSubmit" v-on:click="hello = !hello">
+    <form @submit="onSubmit" v-on:click="notification = !notification">
       <input type="submit" value="Submit" />
     </form>
   </div>
@@ -45,7 +45,7 @@ export default {
       price: "",
       category: "",
       image: "",
-      hello: true,
+      notification: true,
     }
   },
   methods: {
