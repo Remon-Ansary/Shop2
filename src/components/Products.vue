@@ -1,9 +1,10 @@
 <template>
   <div>
-    <el-container> </el-container>
     <el-main>
       <h1>All products</h1>
+
       <el-row :gutter="10">
+
         <el-col
           :xs="11"
           :sm="8"
@@ -11,16 +12,14 @@
           :lg="6"
           :xl="6"
           v-for="product in allProducts"
-          v-bind:key="product.id"
-        >
+          v-bind:key="product.id">
+          
           <el-card class="card">
             <img v-bind:src="product.image" class="image" />
             <div style="padding: 0px">
               <span>{{ product.title }}</span>
               <div class="bottom clearfix">
-                <el-button type="text" class="button"
-                  >{{ product.price }} $</el-button
-                >
+                <el-button type="text" class="button">{{ product.price }} $</el-button>
               </div>
             </div>
             <router-link
@@ -28,10 +27,8 @@
               class=""
               ><el-button class="button" type="primary">View Details</el-button>
             </router-link>
-            <i
-              class="el-icon-delete"
-              v-on:click="deleteProduct(product.id)"
-            ></i>
+            <i class="el-icon-delete" v-on:click="deleteProduct(product.id)">
+            </i>
           </el-card>
         </el-col>
       </el-row>
@@ -41,6 +38,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex"
+
 export default {
   name: "Products",
 
@@ -52,6 +50,7 @@ export default {
   methods: {
     ...mapActions(["deleteProduct"]),
   },
+
   computed: mapGetters(["allProducts"]),
 
   mounted() {

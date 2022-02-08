@@ -2,6 +2,7 @@ import CreateProduct from "@/components/CreateProduct"
 import ProductDetails from "@/components/ProductDetails"
 import Products from "@/components/Products"
 import UpdateProduct from "@/components/UpdateProduct"
+
 export const routes = [
   {
     path: "/",

@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 //to handle state
 const state = {
-  products: null,
+  products: [],
   singleProduct: [],
   updateProduct: [],
   newProduct: [],
@@ -20,11 +20,12 @@ const getters = {
 //to handle actions
 const actions = {
   async allProducts({ commit }) {
-    if (this.state.products == null) {
+    if (this.state.products.length === 0) {
       const response = await axios.get("https://fakestoreapi.com/products")
       commit("SET_PRODUCTS", response.data), (this.loading = true)
     }
   },
+
   async singleProduct({ commit }, productId) {
     const response = await axios.get(
       `https://fakestoreapi.com/products/${productId}`
@@ -56,9 +57,11 @@ const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products
   },
+
   SET_SINGLE_PRODUCTS(state, singleProduct) {
     state.singleProduct = singleProduct
   },
+
   updateProduct: (state, payload) => {
     const index = state.products.findIndex(
       (product) => product.id === payload.id
@@ -66,6 +69,7 @@ const mutations = {
 
     state.products.splice(index, 1, payload)
   },
+
   DELETE_PRODUCT(state, id) {
     state.products = state.products.filter((product) => product.id !== id)
   },

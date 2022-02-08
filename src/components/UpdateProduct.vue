@@ -38,6 +38,9 @@
             class="form-control"
             v-model="singleProduct.image"
           ></el-input>
+          <form @submit="onSubmit">
+        <input type="submit" value="Submit" />
+      </form>
         </el-form-item>
       </el-form>
       <div class="card-header"></div>
@@ -47,8 +50,11 @@
   </div>
 </template>
 
+
 <script>
+
 import { mapActions, mapGetters } from "vuex"
+
 export default {
   name: "UpdateProduct",
   data() {
@@ -56,11 +62,13 @@ export default {
       errorMessage: "",
     }
   },
+
   computed: mapGetters(["singleProduct"]),
 
   mounted() {
     this.$store.dispatch("singleProduct", this.$route.params.id)
   },
+
   methods: {
     ...mapActions(["updateProduct", "singleProduct"]),
     onSubmit(event) {
@@ -75,7 +83,6 @@ export default {
         }),
         this.$router.push("/")
       )
-
       console.log("updateProduct")
     },
   },

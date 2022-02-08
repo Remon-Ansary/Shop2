@@ -33,26 +33,21 @@
                       name: 'UpdateProduct',
                       params: { id: singleProduct.id },
                     }"
-                    class=""
-                    ><el-button
+                    class=""><el-button
                       class="button"
                       type="primary"
                       style="padding-left: "
-                      >Update</el-button
-                    >
+                      >Update</el-button>
                   </router-link>
                 </el-col>
                 <router-link
                   :to="{
                     name: 'Products',
                   }"
-                  class=""
-                >
+                  class="">
                   <el-button
                     v-on:click="deleteProduct(singleProduct.id)"
-                    type="danger"
-                    >delete</el-button
-                  >
+                    type="danger">delete</el-button>
                 </router-link>
               </el-row>
             </el-col>
@@ -65,6 +60,7 @@
 <script>
 // import axios from "axios"
 import { mapGetters, mapActions } from "vuex"
+
 export default {
   name: "ProductDetails",
 
@@ -74,9 +70,11 @@ export default {
       show: true,
     }
   },
+
   methods: {
     ...mapActions(["deleteProduct"]),
   },
+
   computed:
     // singleProduct() {
     //   return this.$store.getters.singleProduct
@@ -86,6 +84,7 @@ export default {
   mounted() {
     this.$store.dispatch("singleProduct", this.$route.params.id)
   },
+  
 }
 </script>
 

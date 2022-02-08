@@ -3,6 +3,7 @@
     <div class="container">
       <h3>Add Item</h3>
     </div>
+
     <el-form @submit="onSubmit" label-width="100px">
       <el-form-item label=" Name">
         <el-input type="text" class="form-control" v-model="title"></el-input>
@@ -37,6 +38,7 @@
 import { mapActions } from "vuex"
 
 export default {
+
   name: "CreateProduct",
 
   data() {
@@ -60,7 +62,7 @@ export default {
           image: this.image,
         })
       )
-      console.log("createProduct")
+      
       this.$router.push("/")
     },
   },
